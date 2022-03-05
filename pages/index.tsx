@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar/index'
 import Results from '../components/Results/index'
 import requests from '../utils/requests'
 
-const Home: NextPage = ({results}) => {
+const Home: NextPage = ({ results }) => {
   return (
     <div className="">
       <Head>
@@ -30,8 +30,9 @@ export const getServerSideProps = async (context: NextPageContext) => {
   const genre = context.query.genre
 
   const request = await fetch(
-    `https://api.themoviedb.org/3${requests[genre]?.url}` ||
-      requests.fetchTrending
+    `https://api.themoviedb.org/3${
+      requests[genre]?.url || requests.fetchTrending.url
+    }`
   ).then((res) => res.json())
 
   return {
